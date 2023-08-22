@@ -1,3 +1,5 @@
+import RootLayout from "@/components/Layouts/RootLayout";
+
 import Head from "next/head";
 import React from "react";
 
@@ -10,9 +12,12 @@ const HomePage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <p className="text-red-500">Hi there</p>
     </>
   );
 };
 
 export default HomePage;
+
+HomePage.getLayout = function getLayout(page) {
+  return <RootLayout>{page}</RootLayout>;
+};
