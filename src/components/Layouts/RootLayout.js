@@ -165,7 +165,7 @@ const RootLayout = ({ children }) => {
               </a>
             </Dropdown>
 
-            <Link href="/allcomponents">
+            <Link href="/allproducts">
               <items>
                 <Space>
                   <ShopOutlined />
@@ -222,19 +222,11 @@ const RootLayout = ({ children }) => {
                   </a>
                 </Dropdown>
 
-                <Link href="/allcomponents">
+                <Link href="/allproducts">
                   <items>
                     <Space>
                       <ShopOutlined />
-                      All Components
-                    </Space>
-                  </items>
-                </Link>
-                <Link href="/pcbuilder">
-                  <items>
-                    <Space>
-                      <DesktopOutlined />
-                      PC Builder
+                      All Products
                     </Space>
                   </items>
                 </Link>
