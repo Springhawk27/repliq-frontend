@@ -144,7 +144,7 @@ const FeaturedProducts = ({ featuredProducts }) => {
                     <ProfileOutlined /> {product?.category}
                   </span>
                   <span className="text-orange-500">
-                    <StarOutlined /> {product?.individual_rating}
+                    <StarOutlined /> {product?.average_rating}
                   </span>
                 </div>
               </div>
@@ -153,7 +153,7 @@ const FeaturedProducts = ({ featuredProducts }) => {
                   ? product?.description.slice(0, 70) + "..."
                   : product?.description}
               </p>
-              <Link href={`/components/${product?._id}`}>
+              <Link href={`/products/${product?._id}`}>
                 <Button
                   style={{
                     fontSize: "15px",
