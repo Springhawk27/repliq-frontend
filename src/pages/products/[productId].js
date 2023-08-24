@@ -1,4 +1,5 @@
 import {
+  Button,
   Col,
   Divider,
   Image,
@@ -7,6 +8,7 @@ import {
   Row,
   Tooltip,
   Typography,
+  message,
 } from "antd";
 import {
   UserOutlined,
@@ -18,8 +20,26 @@ import {
 import RootLayout from "@/components/Layouts/RootLayout";
 import { useMemo, useState } from "react";
 import Head from "next/head";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/redux/features/cart/cartSlice";
 
 const ProductDetailPage = ({ product }) => {
+  const dispatch = useDispatch();
+
+  const [messageApi, contextHolder] = message.useMessage();
+  const success = (product) => {
+    messageApi.open({
+      type: "success",
+      content: `${product.product_name} Added To Cart`,
+    });
+  };
+
+  const handleAddProduct = (product) => {
+    success(product);
+
+    dispatch(addToCart(product));
+  };
+
   const [arrow, setArrow] = useState("Show");
 
   const mergedArrow = useMemo(() => {
@@ -38,6 +58,8 @@ const ProductDetailPage = ({ product }) => {
   //   console.log(component, "chekcing");
   return (
     <>
+      {contextHolder}
+
       <Head>
         <title>Repliq: {product?.product_name}</title>
         <meta name="description" content="This is Repliq E-commerce Web Page" />
@@ -131,6 +153,24 @@ const ProductDetailPage = ({ product }) => {
           <p style={{ fontSize: "20px", fontWeight: "lighter" }}>
             {product?.description}
           </p>
+          <Button
+            style={{
+              fontSize: "15px",
+              marginTop: "20px",
+              backgroundColor: "#450A0B",
+              color: "white",
+              width: "100%",
+              padding: "2px 5px ",
+              fontWeight: "400",
+              letterSpacing: "3px",
+              textAlign: "center",
+            }}
+            className=" hover:text-white"
+            variant="default"
+            onClick={() => handleAddProduct(product)}
+          >
+            Add to cart
+          </Button>
 
           <Divider orientation="left"></Divider>
         </Col>

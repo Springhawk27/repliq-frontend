@@ -256,18 +256,25 @@ const RootLayout = ({ children }) => {
               </items>
             )}
             {session?.user ? (
-              <items>
-                <Space>
-                  <Button
-                    className="ms-2 font-bold"
-                    onClick={() => signOut()}
-                    type="text"
-                    danger
-                  >
-                    Logout
-                  </Button>
-                </Space>
-              </items>
+              <>
+                <Link href="/dashboard">
+                  <items>
+                    <Space>Dashboard</Space>
+                  </items>
+                </Link>
+                <items>
+                  <Space>
+                    <Button
+                      className="ms-2 font-bold"
+                      onClick={() => signOut()}
+                      type="text"
+                      danger
+                    >
+                      Logout
+                    </Button>
+                  </Space>
+                </items>
+              </>
             ) : (
               <Link href="/login">
                 <Space>
@@ -364,18 +371,25 @@ const RootLayout = ({ children }) => {
                 </items>
 
                 {session?.user ? (
-                  <items>
-                    <Space>
-                      <Button
-                        className="ms-2 font-bold"
-                        onClick={() => signOut()}
-                        type="text"
-                        danger
-                      >
-                        Logout
-                      </Button>
-                    </Space>
-                  </items>
+                  <>
+                    <Link href="/dashboard">
+                      <items>
+                        <Space>Dashboard</Space>
+                      </items>
+                    </Link>
+                    <items>
+                      <Space>
+                        <Button
+                          className="ms-2 font-bold"
+                          onClick={() => signOut()}
+                          type="text"
+                          danger
+                        >
+                          Logout
+                        </Button>
+                      </Space>
+                    </items>
+                  </>
                 ) : (
                   <Link href="/login">
                     <Space>

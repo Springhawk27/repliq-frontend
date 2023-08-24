@@ -3,8 +3,8 @@ import Component from "@/components/UI/Component";
 import React from "react";
 
 const RamPage = ({ specificComponents, categoryName }) => {
-  console.log(specificComponents);
-  console.log(categoryName);
+  // console.log(specificComponents);
+  // console.log(categoryName);
   return (
     <div>
       <Component
