@@ -23,7 +23,7 @@ const LoginPage = () => {
         <Button
           onClick={() =>
             signIn("github", {
-              callbackUrl: "http://localhost:3000/",
+              callbackUrl: "https://repliq-assignment.vercel.app/",
             })
           }
         >

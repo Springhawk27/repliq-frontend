@@ -27,6 +27,7 @@ HomePage.getLayout = function getLayout(page) {
 };
 
 export const getStaticProps = async () => {
+  // only before deployment
   // if (typeof window === "undefined") {
   //   return {
   //     props: {
