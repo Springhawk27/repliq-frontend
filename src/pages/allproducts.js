@@ -5,7 +5,7 @@ import Head from "next/head";
 import React from "react";
 
 const AllProductsPage = ({ allProducts }) => {
-  console.log(allProducts);
+  // console.log(allProducts);
   return (
     <>
       <Head>
