@@ -14,7 +14,9 @@ const CheckoutPage = () => {
         <Checkout key={product._id} product={product}></Checkout>
       ))}
       <hr />
-      <p className="text-black text-2xl text-left">Sub Total: ${total}</p>
+      <p className="text-black text-2xl text-left">
+        Sub Total: ${total.toFixed(2)}
+      </p>
     </div>
   );
 };

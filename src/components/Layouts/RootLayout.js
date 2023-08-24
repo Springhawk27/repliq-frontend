@@ -226,7 +226,7 @@ const RootLayout = ({ children }) => {
                     <Cart key={product._id} product={product}></Cart>
                   ))}
                   <p className="text-black text-2xl text-right">
-                    Total: ${total}
+                    Total: ${total.toFixed(2)}
                   </p>
                 </div>
                 <Link href={`/checkout`}>
@@ -307,7 +307,7 @@ const RootLayout = ({ children }) => {
                 </Link>
                 <items>
                   <Button
-                    className=" font-bold text-lg text-center"
+                    className="text-white font-bold text-lg text-center"
                     type="text"
                     onClick={showDrawer2}
                   >
@@ -322,12 +322,31 @@ const RootLayout = ({ children }) => {
                     open={open2}
                   >
                     {/* <div className="text-black flex flex-col gap-y-4"></div> */}
-                    <div className="space-y-5">
+                    <div className="space-y-5  mb-4">
                       {products.map((product) => (
                         <Cart key={product._id} product={product}></Cart>
                       ))}
-                      <p className="text-black text-2xl">Total: {total}</p>
+                      <p className="text-black text-2xl text-right">
+                        Total: ${total.toFixed(2)}
+                      </p>
                     </div>
+                    <Link href={`/checkout`}>
+                      <Button
+                        style={{
+                          fontSize: "15px",
+                          marginTop: "10px",
+                          backgroundColor: "#450A0B",
+                          color: "white",
+                          width: "100%",
+                          padding: "2px 5px ",
+                          fontWeight: "300",
+                          letterSpacing: "3px",
+                          textAlign: "center",
+                        }}
+                      >
+                        Checkout
+                      </Button>
+                    </Link>
                   </Drawer>
                 </items>
 
