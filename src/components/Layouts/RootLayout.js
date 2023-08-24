@@ -23,8 +23,12 @@ import {
   removeOne,
 } from "@/redux/features/cart/cartSlice";
 import Cart from "../UI/Cart";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const RootLayout = ({ children }) => {
+  const { data: session } = useSession();
+  // console.log(session?.user);
+
   const { products, total } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
@@ -194,7 +198,6 @@ const RootLayout = ({ children }) => {
                 </Space>
               </a>
             </Dropdown>
-
             <Link href="/allproducts">
               <items>
                 <Space>
@@ -203,7 +206,6 @@ const RootLayout = ({ children }) => {
                 </Space>
               </items>
             </Link>
-
             <items>
               <Button
                 className="text-white font-bold text-lg text-center"
@@ -248,20 +250,31 @@ const RootLayout = ({ children }) => {
                 </Link>
               </Drawer>
             </items>
-
-            <items>
-              <Space>
-                <Button className="ms-2 font-bold" type="text" danger>
-                  Logout
-                </Button>
-              </Space>
-            </items>
-
-            <Link href="/login">
-              <Space>
-                <items>Login</items>
-              </Space>
-            </Link>
+            {session?.user && (
+              <items>
+                <span className="text-white"> Hi, {session?.user?.name}</span>
+              </items>
+            )}
+            {session?.user ? (
+              <items>
+                <Space>
+                  <Button
+                    className="ms-2 font-bold"
+                    onClick={() => signOut()}
+                    type="text"
+                    danger
+                  >
+                    Logout
+                  </Button>
+                </Space>
+              </items>
+            ) : (
+              <Link href="/login">
+                <Space>
+                  <items>Login</items>
+                </Space>
+              </Link>
+            )}
           </div>
         ) : (
           <>
@@ -350,19 +363,26 @@ const RootLayout = ({ children }) => {
                   </Drawer>
                 </items>
 
-                <items>
-                  <Space>
-                    <Button className="ms-2 font-bold" type="text" danger>
-                      Logout
-                    </Button>
-                  </Space>
-                </items>
-
-                <Link href="/login">
-                  <Space>
-                    <items>Login</items>
-                  </Space>
-                </Link>
+                {session?.user ? (
+                  <items>
+                    <Space>
+                      <Button
+                        className="ms-2 font-bold"
+                        onClick={() => signOut()}
+                        type="text"
+                        danger
+                      >
+                        Logout
+                      </Button>
+                    </Space>
+                  </items>
+                ) : (
+                  <Link href="/login">
+                    <Space>
+                      <items>Login</items>
+                    </Space>
+                  </Link>
+                )}
               </div>
             </Drawer>
           </>
