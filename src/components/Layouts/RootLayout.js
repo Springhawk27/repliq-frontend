@@ -1,25 +1,42 @@
 import {
   ShopOutlined,
-  DesktopOutlined,
+  ShoppingCartOutlined,
   GithubOutlined,
   LinkedinFilled,
   GoogleSquareFilled,
   TwitterSquareFilled,
   TableOutlined,
   DownOutlined,
+  PlusOutlined,
+  MinusOutlined,
+  DeleteOutlined,
 } from "@ant-design/icons";
 import { Button, Dropdown, Layout, Menu, Space, Grid, Drawer } from "antd";
 const { Header, Content, Footer } = Layout;
 import styles from "@/styles/Home.module.css";
 import Link from "next/link";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToCart,
+  removeFromCart,
+  removeOne,
+} from "@/redux/features/cart/cartSlice";
+import Cart from "../UI/Cart";
 
 const RootLayout = ({ children }) => {
+  const { products, total } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
   const { useBreakpoint } = Grid;
   const screens = useBreakpoint();
 
   const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
+
   const [childrenDrawer, setChildrenDrawer] = useState(false);
+  const [childrenDrawer2, setChildrenDrawer2] = useState(false);
+
   const showDrawer = () => {
     setOpen(true);
   };
@@ -31,6 +48,19 @@ const RootLayout = ({ children }) => {
   };
   const onChildrenDrawerClose = () => {
     setChildrenDrawer(false);
+  };
+
+  const showDrawer2 = () => {
+    setOpen2(true);
+  };
+  const onClose2 = () => {
+    setOpen2(false);
+  };
+  const showChildrenDrawer2 = () => {
+    setChildrenDrawer(true);
+  };
+  const onChildrenDrawerClose2 = () => {
+    setChildrenDrawer2(false);
   };
 
   const items = [
@@ -175,6 +205,51 @@ const RootLayout = ({ children }) => {
             </Link>
 
             <items>
+              <Button
+                className="text-white font-bold text-lg text-center"
+                type="text"
+                onClick={showDrawer2}
+              >
+                <ShoppingCartOutlined />
+              </Button>
+
+              <Drawer
+                title="Cart"
+                width={500}
+                closable={false}
+                onClose={onClose2}
+                open={open2}
+              >
+                {/* <div className="text-black flex flex-col gap-y-4"></div> */}
+                <div className="space-y-5  mb-4">
+                  {products.map((product) => (
+                    <Cart key={product._id} product={product}></Cart>
+                  ))}
+                  <p className="text-black text-2xl text-right">
+                    Total: ${total}
+                  </p>
+                </div>
+                <Link href={`/checkout`}>
+                  <Button
+                    style={{
+                      fontSize: "15px",
+                      marginTop: "10px",
+                      backgroundColor: "#450A0B",
+                      color: "white",
+                      width: "100%",
+                      padding: "2px 5px ",
+                      fontWeight: "300",
+                      letterSpacing: "3px",
+                      textAlign: "center",
+                    }}
+                  >
+                    Checkout
+                  </Button>
+                </Link>
+              </Drawer>
+            </items>
+
+            <items>
               <Space>
                 <Button className="ms-2 font-bold" type="text" danger>
                   Logout
@@ -230,6 +305,31 @@ const RootLayout = ({ children }) => {
                     </Space>
                   </items>
                 </Link>
+                <items>
+                  <Button
+                    className=" font-bold text-lg text-center"
+                    type="text"
+                    onClick={showDrawer2}
+                  >
+                    <ShoppingCartOutlined />
+                  </Button>
+
+                  <Drawer
+                    title="Cart"
+                    width={500}
+                    closable={false}
+                    onClose={onClose2}
+                    open={open2}
+                  >
+                    {/* <div className="text-black flex flex-col gap-y-4"></div> */}
+                    <div className="space-y-5">
+                      {products.map((product) => (
+                        <Cart key={product._id} product={product}></Cart>
+                      ))}
+                      <p className="text-black text-2xl">Total: {total}</p>
+                    </div>
+                  </Drawer>
+                </items>
 
                 <items>
                   <Space>

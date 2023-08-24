@@ -11,6 +11,7 @@ import {
 } from "@ant-design/icons";
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import ProductCard from "./ProductCard";
 
 const AllProducts = ({ allProducts }) => {
   const { Meta } = Card;
