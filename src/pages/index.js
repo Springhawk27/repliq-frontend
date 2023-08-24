@@ -1,4 +1,5 @@
 import RootLayout from "@/components/Layouts/RootLayout";
+import FeaturedCategories from "@/components/UI/FeaturedCategories";
 import FeaturedProducts from "@/components/UI/FeaturedProduct";
 import { shuffleArray } from "@/utils/shuffleArray";
 
@@ -16,6 +17,9 @@ const HomePage = ({ featuredProducts }) => {
       </Head>
 
       <FeaturedProducts featuredProducts={featuredProducts}></FeaturedProducts>
+      <FeaturedCategories
+        featuredProducts={featuredProducts}
+      ></FeaturedCategories>
     </>
   );
 };

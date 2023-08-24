@@ -320,7 +320,7 @@ const RootLayout = ({ children }) => {
                 </Link>
                 <items>
                   <Button
-                    className="text-white font-bold text-lg text-center"
+                    className="text-black font-bold text-lg text-center"
                     type="text"
                     onClick={showDrawer2}
                   >
@@ -329,7 +329,7 @@ const RootLayout = ({ children }) => {
 
                   <Drawer
                     title="Cart"
-                    width={500}
+                    width={250}
                     closable={false}
                     onClose={onClose2}
                     open={open2}
